@@ -1,20 +1,51 @@
-'use client'
+"use client";
 
-import { useState } from "react"
+import { data } from "autoprefixer";
+import Image from "next/image";
+import { useState } from "react";
 
-const Meme = () => {
-    const [fInput, setFInput] = useState()
-    const [sInput, setSInput] = useState()
-    const handleGenerateMeme = () =>{
-        console.log(sInput, fInput);
-    }
+const Meme = ({ singleMeme }) => {
+  const [fInput, setFInput] = useState();
+  const [sInput, setSInput] = useState();
+  const [showImage, setShowImage] = useState(false)
+  const [showImageurl, setShowImageUrl] = useState(false)
+  const handleGenerateMeme = async () => {
+    let data = await fetch(
+      `https://api.imgflip.com/caption_image?template_id=${singleMeme.id}&username=ShayanHanif&password=shayan123&text0=${fInput}&text1=${sInput}`
+    );
+    data = await data.json();
+    console.log(data.data.url);
+    setShowImageUrl(data.data.url)
+    setShowImage(true)
+  };
   return (
-    <div>
-      <input placeholder="First Input" className="p-3 border-black border-2 rounded-md" onChange={(e)=>setFInput(e.target.value)}/>
-      <input placeholder="First Input" className="p-3 border-black border-2 rounded-md" onChange={(e)=>setSInput(e.target.value)}/>
-      <button onClick={handleGenerateMeme} className="bg-blue-600 text-white font-bold p-3 rounded-md">Generate meme</button>
-    </div>
-  )
-}
+    <div>{
+        showImage?'':<>
+      <Image src={singleMeme.url} width={500} height={500} />
+      <input
+        placeholder="First Input"
+        className="p-3 border-black border-2 rounded-md"
+        onChange={(e) => setFInput(e.target.value)}
+      />
+      <input
+        placeholder="Second Input"
+        className="p-3 border-black border-2 rounded-md"
+        onChange={(e) => setSInput(e.target.value)}
+      />
+      <button
+        onClick={handleGenerateMeme}
+        className="bg-blue-600 text-white font-bold p-3 rounded-md"
+      >
+        Generate meme
+      </button>
+      </>
 
-export default Meme
+        }
+
+      {/* {data? data:''} */}
+      {showImage ? <Image src={showImageurl} width={300} height={300} /> : ""}
+    </div>
+  );
+};
+
+export default Meme;

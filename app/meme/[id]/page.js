@@ -11,7 +11,6 @@ export default async function page({params}){
     console.log(singleMeme);
     return<div>
         <h2>{singleMeme.name}</h2>
-        <Image src={singleMeme.url} width={500} height={500}  />
-        <Meme/>
+        <Meme singleMeme={singleMeme}/>
     </div>
 }
