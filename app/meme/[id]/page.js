@@ -10,7 +10,7 @@ export default async function page({params}){
     singleMeme = singleMeme[0] 
     console.log(singleMeme);
     return<div>
-        <h2>{singleMeme.name}</h2>
+        <h2 className="text-white underline mb-10 font-semibold text-center mt-5 text-[30px]">{singleMeme.name}</h2>
         <Meme singleMeme={singleMeme}/>
     </div>
 }

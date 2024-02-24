@@ -19,9 +19,11 @@ const Meme = ({ singleMeme }) => {
     setShowImage(true)
   };
   return (
-    <div>{
+    <div className="text-center">{
         showImage?'':<>
-      <Image src={singleMeme.url} width={500} height={500} />
+      <Image src={singleMeme.url} className="mx-auto" width={500} height={500} />
+      <div className="mt-5 mb-5">
+
       <input
         placeholder="First Input"
         className="p-3 border-black border-2 rounded-md"
@@ -32,6 +34,8 @@ const Meme = ({ singleMeme }) => {
         className="p-3 border-black border-2 rounded-md"
         onChange={(e) => setSInput(e.target.value)}
       />
+      </div>
+
       <button
         onClick={handleGenerateMeme}
         className="bg-blue-600 text-white font-bold p-3 rounded-md"
@@ -43,7 +47,7 @@ const Meme = ({ singleMeme }) => {
         }
 
       {/* {data? data:''} */}
-      {showImage ? <Image src={showImageurl} width={300} height={300} /> : ""}
+      {showImage ? <Image src={showImageurl} className="mx-auto" width={500} height={500} /> : ""}
     </div>
   );
 };
