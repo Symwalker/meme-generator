@@ -35,7 +35,7 @@
   }
   
   .masonry-item {
-    break-inside: avoid;
+    break-inside:  avoid;
     margin: 10px; /* Ensure no margin is causing gaps */
     padding: 0; /* Ensure no padding is causing gaps */
   }
